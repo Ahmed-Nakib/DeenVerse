@@ -1,28 +1,37 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
+  
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDropdown = () => setIsOpen(!isOpen);
 
   return (
     <nav className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* লোগো */}
-          <div className="text-2xl font-bold tracking-wide">আমাদের ওয়েব</div>
+          <div className="text-2xl font-bold tracking-wide">দীনভার্স</div>
 
           {/* বড় স্ক্রিন মেনু */}
           <div className="hidden md:flex space-x-8 text-white/90 font-medium">
-            <a href="#" className="hover:text-white transition">
+            <Link to={"/"} className="hover:text-white transition">
               মূল পৃষ্ঠা
-            </a>
+            </Link>
 
             {/* ক্যাটাগরি ড্রপডাউন */}
-            <div className="relative group">
-              <button className="flex items-center hover:text-white focus:outline-none">
+            <div className="relative inline-block text-left">
+              <button
+                onClick={toggleDropdown}
+                className="flex items-center text-white hover:text-indigo-200 focus:outline-none transition-all duration-300"
+              >
                 ক্যাটাগরি
                 <svg
-                  className="ml-1 w-4 h-4"
+                  className={`ml-1 w-4 h-4 transform transition-transform duration-300 ${
+                    isOpen ? "rotate-180" : "rotate-0"
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -35,32 +44,35 @@ const Navbar: React.FC = () => {
                   />
                 </svg>
               </button>
-              <div className="absolute hidden group-hover:block bg-white text-gray-700 rounded-md mt-2 w-40 shadow-lg">
-                <a
-                  href="#"
-                  className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
-                >
-                  প্রযুক্তি
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
-                >
-                  ভ্রমণ
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
-                >
-                  স্বাস্থ্য
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
-                >
-                  শিক্ষা
-                </a>
-              </div>
+
+              {isOpen && (
+                <div className="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gradient-to-r from-indigo-50 to-indigo-100 hover:text-indigo-700 rounded-t-md"
+                  >
+                    প্রযুক্তি
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gradient-to-r from-indigo-50 to-indigo-100 hover:text-indigo-700"
+                  >
+                    ভ্রমণ
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gradient-to-r from-indigo-50 to-indigo-100 hover:text-indigo-700"
+                  >
+                    স্বাস্থ্য
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gradient-to-r from-indigo-50 to-indigo-100 hover:text-indigo-700 rounded-b-md"
+                  >
+                    শিক্ষা
+                  </a>
+                </div>
+              )}
             </div>
 
             <a href="#" className="hover:text-white transition">
