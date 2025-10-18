@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Heart, Eye } from "lucide-react";
 
 const data = [
@@ -36,6 +37,12 @@ const data = [
 ];
 
 export default function KnowledgeCardList() {
+  const navigate = useNavigate();
+
+  const handleCardClick = (id) => {
+    navigate(`/item/${id}`);
+  };
+
   return (
     <div className="w-full max-w-6xl mx-auto mt-14 px-4">
       <h2 className="text-2xl font-bold text-green-800 mb-6 text-center">
@@ -46,7 +53,8 @@ export default function KnowledgeCardList() {
         {data.map((item) => (
           <div
             key={item.id}
-            className="bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 hover:scale-[1.02] overflow-hidden"
+            onClick={() => handleCardClick(item.id)}
+            className="cursor-pointer bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 hover:scale-[1.02] overflow-hidden"
           >
             <img
               src={item.image}

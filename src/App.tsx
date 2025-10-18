@@ -1,14 +1,29 @@
 
-import IslamicSearchPage from "./component/IslamicSearchPage"
-import Navbar from "./component/Navbar"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import IslamicSearchPage from "./component/IslamicSearchPage";
+import KnowledgeCardList from "./component/ItemList";
+import Footer from "./component/Footer";
+import ItemDetailsPage from "./component/ItemDetailsPage";
 
-const App = () => {
+export default function App() {
   return (
-    <div>
-      <Navbar />
-      <IslamicSearchPage />
-    </div>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+        {/* মূল হোম পেজ */}
+        <Route
+          path="/"
+          element={
+            <>
+              <IslamicSearchPage />
+              <KnowledgeCardList />
+              <Footer />
+            </>
+          }
+        />
 
-export default App
+        {/* item details page */}
+        <Route path="/item/:id" element={<ItemDetailsPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
