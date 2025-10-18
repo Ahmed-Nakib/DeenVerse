@@ -39,7 +39,7 @@ const data = [
 export default function KnowledgeCardList() {
   const navigate = useNavigate();
 
-  const handleCardClick = (id) => {
+  const handleCardClick = (id: number) => {
     navigate(`/item/${id}`);
   };
 
