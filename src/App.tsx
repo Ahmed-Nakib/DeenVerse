@@ -1,4 +1,5 @@
-import IslamicSearchPage from "./component/Hero"
+
+import IslamicSearchPage from "./component/IslamicSearchPage"
 import Navbar from "./component/Navbar"
 
 const App = () => {
