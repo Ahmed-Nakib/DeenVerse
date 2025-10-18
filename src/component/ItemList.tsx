@@ -1,7 +1,18 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Heart, Eye } from "lucide-react";
 
-const data = [
+// 📘 ডেটার টাইপ ডিফাইন করা হলো
+interface KnowledgeItem {
+  id: number;
+  image: string;
+  title: string;
+  subtitle: string;
+  reads: number;
+  reactions: number;
+}
+
+const data: KnowledgeItem[] = [
   {
     id: 1,
     image: "https://images.unsplash.com/photo-1524503033411-c9566986fc8f?w=600",
@@ -36,7 +47,7 @@ const data = [
   },
 ];
 
-export default function KnowledgeCardList() {
+const KnowledgeCardList: React.FC = () => {
   const navigate = useNavigate();
 
   const handleCardClick = (id: number) => {
@@ -83,4 +94,6 @@ export default function KnowledgeCardList() {
       </div>
     </div>
   );
-}
+};
+
+export default KnowledgeCardList;

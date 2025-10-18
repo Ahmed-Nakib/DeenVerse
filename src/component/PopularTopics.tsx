@@ -1,5 +1,14 @@
-export default function PopularTopics() {
-  const topics = ["নামাজ", "যাকাত", "পারিবারিক সম্পর্ক", "হজ্ব", "রোজা", "দোয়া"];
+import React from "react";
+
+const PopularTopics: React.FC = () => {
+  const topics: string[] = [
+    "নামাজ",
+    "যাকাত",
+    "পারিবারিক সম্পর্ক",
+    "হজ্ব",
+    "রোজা",
+    "দোয়া",
+  ];
 
   return (
     <div className="mt-8 text-center">
@@ -16,4 +25,6 @@ export default function PopularTopics() {
       </div>
     </div>
   );
-}
+};
+
+export default PopularTopics;

@@ -1,7 +1,9 @@
+import React from "react";
 import { useParams } from "react-router-dom";
 import { Book, Quote, BookOpen, PlayCircle } from "lucide-react";
 
-export default function ItemDetailsPage() {
+
+const ItemDetailsPage: React.FC = () => {
   const { id } = useParams();
 
   return (
@@ -11,20 +13,18 @@ export default function ItemDetailsPage() {
       </h1>
 
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-6 space-y-8 border border-green-100">
-        {/* সারসংক্ষেপ */}
+        {/* 🧾 সারসংক্ষেপ */}
         <section>
           <div className="flex items-center gap-2 mb-3">
             <BookOpen className="text-green-700 w-6 h-6" />
-            <h2 className="text-xl font-semibold text-green-800">
-              সারসংক্ষেপ
-            </h2>
+            <h2 className="text-xl font-semibold text-green-800">সারসংক্ষেপ</h2>
           </div>
           <p className="text-gray-700 leading-relaxed">
             এই সেকশনে বিষয়টির বিস্তারিত সারসংক্ষেপ দেখানো হবে। (id: {id})
           </p>
         </section>
 
-        {/* কুরআন */}
+        {/* 📖 কুরআন */}
         <section>
           <div className="flex items-center gap-2 mb-3">
             <Book className="text-green-700 w-6 h-6" />
@@ -39,7 +39,7 @@ export default function ItemDetailsPage() {
           </blockquote>
         </section>
 
-        {/* হাদিস */}
+        {/* 🕋 হাদিস */}
         <section>
           <div className="flex items-center gap-2 mb-3">
             <Quote className="text-green-700 w-6 h-6" />
@@ -52,7 +52,7 @@ export default function ItemDetailsPage() {
           </blockquote>
         </section>
 
-        {/* বয়ান */}
+        {/* 🎤 বয়ান */}
         <div className="text-center mt-10">
           <button className="flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-emerald-700 text-white text-lg font-semibold px-10 py-4 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition">
             <PlayCircle className="w-6 h-6" />
@@ -62,4 +62,6 @@ export default function ItemDetailsPage() {
       </div>
     </div>
   );
-}
+};
+
+export default ItemDetailsPage;

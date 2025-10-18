@@ -1,4 +1,6 @@
-export default function Hero() {
+import React from "react";
+
+const Hero: React.FC = () => {
   return (
     <div className="text-center mb-6">
       <h1 className="text-3xl md:text-4xl font-bold text-green-800 mb-2">
@@ -9,4 +11,6 @@ export default function Hero() {
       </p>
     </div>
   );
-}
+};
+
+export default Hero;
