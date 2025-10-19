@@ -3,25 +3,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
-
   const categories = [
-  { title: "কুরআন বিষয়ক" },
-  { title: "হাদীস বিষয়ক" },
-  { title: "আকিদা ও বিশ্বাস" },
-  { title: "আমল ও আখলাক" },
-  { title: "পারিবারিক জীবন" },
-  { title: "ফিকহ (ইসলামী আইন)" },
-  { title: "খুতবা ও বক্তৃতা" },
-  { title: "ইসলামী ইতিহাস" },
-  { title: "আধুনিক জীবনে ইসলাম" },
-  { title: "নারী ও ইসলাম" },
-  { title: "শিশুদের ইসলাম শিক্ষা" },
-  { title: "দোআ ও জিকির" },
-  { title: "অনুপ্রেরণামূলক গল্প ও উদ্ধৃতি" },
-  { title: "ইসলামিক প্রবন্ধ ও গবেষণা" },
-];
+    { title: "কুরআন বিষয়ক", path: "/category/quran" },
+    { title: "হাদীস বিষয়ক", path: "/category/hadith" },
+    { title: "আকিদা ও বিশ্বাস", path: "/category/aqeedah" },
+    { title: "আমল ও আখলাক", path: "/category/amol" },
+    { title: "পারিবারিক জীবন", path: "/category/family" },
+    { title: "ফিকহ (ইসলামী আইন)", path: "/category/fiqh" },
+    { title: "খুতবা ও বক্তৃতা", path: "/category/khutbah" },
+    { title: "ইসলামী ইতিহাস", path: "/category/history" },
+    { title: "আধুনিক জীবনে ইসলাম", path: "/category/modern" },
+    { title: "নারী ও ইসলাম", path: "/category/women" },
+    { title: "শিশুদের ইসলাম শিক্ষা", path: "/category/kids" },
+    { title: "দোআ ও জিকির", path: "/category/dua" },
+    { title: "অনুপ্রেরণামূলক গল্প ও উদ্ধৃতি", path: "/category/stories" },
+    { title: "ইসলামিক প্রবন্ধ ও গবেষণা", path: "/category/articles" },
+  ];
 
-  
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -31,11 +29,13 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* লোগো */}
-          <div className="text-2xl font-bold tracking-wide">দীনভার্স</div>
+          <div className="text-2xl font-bold tracking-wide">
+            <Link to="/">দীনভার্স</Link>
+          </div>
 
           {/* বড় স্ক্রিন মেনু */}
           <div className="hidden md:flex space-x-8 text-white/90 font-medium">
-            <Link to={"/"} className="hover:text-white transition">
+            <Link to="/" className="hover:text-white transition">
               মূল পৃষ্ঠা
             </Link>
 
@@ -64,26 +64,28 @@ const Navbar: React.FC = () => {
               </button>
 
               {isOpen && (
-                <div className="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
-                  {categories.map((i) => 
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gradient-to-r from-indigo-50 to-indigo-100 hover:text-indigo-700 rounded-t-md"
-                  >
-                   {i.title}
-                  </a>
-                  )}
+                <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
+                  {categories.map((cat) => (
+                    <Link
+                      key={cat.title}
+                      to={cat.path}
+                      className="block px-4 py-2 text-gray-700 hover:bg-gradient-to-r from-indigo-50 to-indigo-100 hover:text-indigo-700 rounded-t-md"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {cat.title}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
 
-            <Link to={"mission"} className="hover:text-white transition">
+            <Link to="/mission" className="hover:text-white transition">
               আমাদের উদ্দেশ্য
             </Link>
-            <Link to={"about"} className="hover:text-white transition">
+            <Link to="/about" className="hover:text-white transition">
               আমাদের সম্পর্কে
             </Link>
-            <Link to={"contact"} className="hover:text-white transition">
+            <Link to="/contact" className="hover:text-white transition">
               যোগাযোগ
             </Link>
           </div>
@@ -138,12 +140,13 @@ const Navbar: React.FC = () => {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="md:hidden bg-gradient-to-br from-indigo-600 via-purple-700 to-blue-700 text-white"
           >
-            <a
-              href="#"
+            <Link
+              to="/"
               className="block px-4 py-3 border-b border-white/20 hover:bg-white/10"
+              onClick={() => setMobileMenuOpen(false)}
             >
               মূল পৃষ্ঠা
-            </a>
+            </Link>
 
             {/* ক্যাটাগরি */}
             <details className="border-b border-white/20">
@@ -151,36 +154,40 @@ const Navbar: React.FC = () => {
                 ক্যাটাগরি
               </summary>
               <div className="pl-6 pb-2 text-white/90">
-                <a href="#" className="block py-1 hover:text-white">
-                  প্রযুক্তি
-                </a>
-                <a href="#" className="block py-1 hover:text-white">
-                  ভ্রমণ
-                </a>
-                <a href="#" className="block py-1 hover:text-white">
-                  স্বাস্থ্য
-                </a>
-                <a href="#" className="block py-1 hover:text-white">
-                  শিক্ষা
-                </a>
+                {categories.map((cat) => (
+                  <Link
+                    key={cat.title}
+                    to={cat.path}
+                    className="block py-1 hover:text-white"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {cat.title}
+                  </Link>
+                ))}
               </div>
             </details>
 
-            <a
-              href="#"
+            <Link
+              to="/mission"
               className="block px-4 py-3 border-b border-white/20 hover:bg-white/10"
+              onClick={() => setMobileMenuOpen(false)}
             >
               আমাদের উদ্দেশ্য
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/about"
               className="block px-4 py-3 border-b border-white/20 hover:bg-white/10"
+              onClick={() => setMobileMenuOpen(false)}
             >
               আমাদের সম্পর্কে
-            </a>
-            <a href="#" className="block px-4 py-3 hover:bg-white/10">
+            </Link>
+            <Link
+              to="/contact"
+              className="block px-4 py-3 hover:bg-white/10"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               যোগাযোগ
-            </a>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
