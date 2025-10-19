@@ -1,10 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Book, Quote, BookOpen, PlayCircle } from "lucide-react";
 
 
 const ItemDetailsPage: React.FC = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   return (
     <div className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 px-5 py-10 flex flex-col items-center">
@@ -55,9 +56,9 @@ const ItemDetailsPage: React.FC = () => {
         {/* 🎤 বয়ান */}
         <div className="w-full flex justify-center">
           <div className="text-center mt-10">
-          <button className="flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-emerald-700 text-white text-lg font-semibold px-10 py-4 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition">
+          <button onClick={() => navigate("/lecture")} className="flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-emerald-700 text-white text-lg font-semibold px-10 py-4 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition">
             <PlayCircle className="w-6 h-6" />
-            🎤 বয়ান
+            বয়ান
           </button>
         </div>
         </div>

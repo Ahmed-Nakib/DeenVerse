@@ -3,6 +3,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
+
+  const categories = [
+  { title: "কুরআন বিষয়ক" },
+  { title: "হাদীস বিষয়ক" },
+  { title: "আকিদা ও বিশ্বাস" },
+  { title: "আমল ও আখলাক" },
+  { title: "পারিবারিক জীবন" },
+  { title: "ফিকহ (ইসলামী আইন)" },
+  { title: "খুতবা ও বক্তৃতা" },
+  { title: "ইসলামী ইতিহাস" },
+  { title: "আধুনিক জীবনে ইসলাম" },
+  { title: "নারী ও ইসলাম" },
+  { title: "শিশুদের ইসলাম শিক্ষা" },
+  { title: "দোআ ও জিকির" },
+  { title: "অনুপ্রেরণামূলক গল্প ও উদ্ধৃতি" },
+  { title: "ইসলামিক প্রবন্ধ ও গবেষণা" },
+];
+
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -47,43 +65,27 @@ const Navbar: React.FC = () => {
 
               {isOpen && (
                 <div className="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
+                  {categories.map((i) => 
                   <a
                     href="#"
                     className="block px-4 py-2 text-gray-700 hover:bg-gradient-to-r from-indigo-50 to-indigo-100 hover:text-indigo-700 rounded-t-md"
                   >
-                    প্রযুক্তি
+                   {i.title}
                   </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gradient-to-r from-indigo-50 to-indigo-100 hover:text-indigo-700"
-                  >
-                    ভ্রমণ
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gradient-to-r from-indigo-50 to-indigo-100 hover:text-indigo-700"
-                  >
-                    স্বাস্থ্য
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gradient-to-r from-indigo-50 to-indigo-100 hover:text-indigo-700 rounded-b-md"
-                  >
-                    শিক্ষা
-                  </a>
+                  )}
                 </div>
               )}
             </div>
 
-            <a href="#" className="hover:text-white transition">
+            <Link to={"mission"} className="hover:text-white transition">
               আমাদের উদ্দেশ্য
-            </a>
-            <a href="#" className="hover:text-white transition">
+            </Link>
+            <Link to={"about"} className="hover:text-white transition">
               আমাদের সম্পর্কে
-            </a>
-            <a href="#" className="hover:text-white transition">
+            </Link>
+            <Link to={"contact"} className="hover:text-white transition">
               যোগাযোগ
-            </a>
+            </Link>
           </div>
 
           {/* মোবাইল মেনু বোতাম */}
